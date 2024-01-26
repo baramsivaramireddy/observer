@@ -51,7 +51,8 @@ const Header = () => {
             className="md:hidden  text-3xl ml-auto"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
-           ≡
+            {isMobileMenuOpen?	<span>&#10005;</span>: <span className="text-4xl"> ≡</span> }	
+
           </div>
         </div>
         <div className={`${isMobileMenuOpen? "" : "hidden"} md:flex`}>

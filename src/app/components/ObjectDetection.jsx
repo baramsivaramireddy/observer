@@ -62,9 +62,16 @@ const ObjectDetectionComponent = () => {
     const ctx = canvas.getContext('2d');
 
     // Set canvas size to image size
-    canvas.width = image.width;
-    canvas.height = image.height;
 
+    if (window.innerWidth > image.width && window.innerHeight >image.height){
+      canvas.width = image.width;
+      canvas.height = image.height;
+    }
+  
+    else{
+      canvas.width = window.innerWidth ;
+      canvas.height = window.innerHeight;
+    }
     // Draw the image on the canvas
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 

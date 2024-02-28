@@ -63,33 +63,27 @@ const ObjectDetectionComponent = () => {
 
     // Set canvas size to image size
 
-    if (window.innerWidth > image.width && window.innerHeight >image.height){
-      canvas.width = image.width;
-      canvas.height = image.height;
-    }
-  
-    else{
-      canvas.width = window.innerWidth ;
-      canvas.height = window.innerHeight;
-    }
     // Draw the image on the canvas
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0, canvas.width,canvas.height);
 
     // Draw rectangles based on the API response
     apiResponse.forEach((object) => {
       const { xmin, ymin, xmax, ymax } = object.box;
 
-      const color = getRandomColor();
-      ctx.fillStyle = color;
+      const boxColor = getRandomColor();
+      const personColor = getRandomColor()
+      ctx.fillStyle = boxColor;
       ctx.beginPath();
       ctx.rect(xmin, ymin, xmax - xmin, ymax - ymin);
 
       ctx.fillText(object.label, xmin, ymin + 10);
 
       ctx.lineWidth = 2;
-      ctx.strokeStyle = color;
+      ctx.strokeStyle = personColor;
       ctx.stroke();
     });
+
+
   };
 
   return (
@@ -110,10 +104,24 @@ const ObjectDetectionComponent = () => {
      <p className='text-2xl font-semibold capitalize'> see the results here</p>
      {loading&&  <Loading />}
     
-    <canvas id="resultCanvas" >
+    <canvas id="resultCanvas" className='h-1/2 w-full' >
 
      
     </canvas>
+
+
+    <div className='w-full overflow-y-auto p-6'>
+
+      <ul>
+
+      {
+      apiResponse.map((o,index) =>(<li key={index}>{o.label} </li>))
+  
+    }
+      </ul>
+  
+
+    </div>
      </div>
     </div>
   );

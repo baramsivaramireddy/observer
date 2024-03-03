@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 
+
 const ObjectDetectionComponent = () => {
   const [apiResponse, setApiResponse] = useState([]);
   const [image, setImage] = useState(null);
@@ -19,13 +20,11 @@ const ObjectDetectionComponent = () => {
     try {
    
 
+
       const response = await fetch(
-        'https://api-inference.huggingface.co/models/facebook/detr-resnet-50',
+        'https://observer-backend.vercel.app/',
         {
           method: 'POST',
-          headers: {
-            Authorization: 'Bearer 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',
-          },
           body: imageFile
         }
       );

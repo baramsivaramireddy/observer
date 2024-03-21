@@ -99,7 +99,7 @@ const ObjectDetectionComponent = () => {
       </form>
       <div>
         <p className='text-2xl'>Try this our for Real time Object Detection</p>
-        <Link href={'/Objectdetector_video'}>
+        <Link href={'/videodetect'}>
 
         <button className='bg-green-400 hover:bg-green-600 text-white rounded-md p-2 ml-36 mt-3'>
         Click here

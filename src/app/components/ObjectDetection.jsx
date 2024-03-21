@@ -1,8 +1,12 @@
 "use client"
 import { useState } from 'react';
+import Objectdetector_video from './Objectdetector_video';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 
 const ObjectDetectionComponent = () => {
+  const router = useRouter()
   const [apiResponse, setApiResponse] = useState([]);
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,9 +22,6 @@ const ObjectDetectionComponent = () => {
     setLoading(true);
 
     try {
-   
-
-
       const response = await fetch(
         'https://observer-backend.vercel.app/',
         {
@@ -32,7 +33,7 @@ const ObjectDetectionComponent = () => {
       const jsonResponse = await response.json();
       console.log(jsonResponse)
       setApiResponse(jsonResponse);
-      return jsonResponse;
+      return jsonResponse;  
     } finally {
       setLoading(false);
     }
@@ -96,6 +97,16 @@ const ObjectDetectionComponent = () => {
         <input type="file" id="imageFileInput" required />
         <button type="submit" className='bg-green-400 hover:bg-green-600 text-white  rounded-full py-2 px-4'>Find Objects</button>
       </form>
+      <div>
+        <p className='text-2xl'>Try this our for Real time Object Detection</p>
+        <Link href={'/Objectdetector_video'}>
+
+        <button className='bg-green-400 hover:bg-green-600 text-white rounded-md p-2 ml-36 mt-3'>
+        Click here
+        </button>
+        {/* <Objectdetector_video/> */}
+        </Link>
+      </div>
       </div>
 
 
